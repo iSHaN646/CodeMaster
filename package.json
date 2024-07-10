@@ -74,8 +74,12 @@
     "tailwindcss": "^3.4.4"
   },
   "browser": {
+    "os": false,
     "crypto": false,
+    "buffer": false,
     "stream": false,
-    "os": false
+    "string_decoder": false,
+    "events": false,
+    "vm": false
   }
 }
