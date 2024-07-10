@@ -1,5 +1,5 @@
 require("dotenv").config();
-const BASE_URL = `https://codemaster-2x3p.onrender.com`;
+const BASE_URL = `https://code-master-api.vercel.app`;
 
 // AUTH ENDPOINTS
 export const endpoints = {
