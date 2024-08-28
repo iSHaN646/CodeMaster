@@ -57,11 +57,11 @@ const NewPlayground = () => {
       <Header>
         <h2>Create New Playground</h2>
         <CloseButton onClick={() => closeModal()}>
-          <IoCloseSharp />
+          <IoCloseSharp fontSize="22px" className="text-black" />
         </CloseButton>
       </Header>
       <InputWithSelect>
-        <input type="text" onChange={(e) => setCardTitle(e.target.value)} />
+        <input type="text" className="text-black" onChange={(e) => setCardTitle(e.target.value)} />
         <Select
           options={languageOptions}
           value={language}

@@ -5,6 +5,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
+import { ChakraProvider } from "@chakra-ui/react";
 import rootReducer from "./reducer";
 import App from "./App";
 
@@ -15,11 +16,13 @@ const store = configureStore({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-        <Toaster />
-      </BrowserRouter>
-    </Provider>
+    <ChakraProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+          <Toaster />
+        </BrowserRouter>
+      </Provider>
+    </ChakraProvider>
   </React.StrictMode>
 );

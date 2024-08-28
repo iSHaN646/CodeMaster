@@ -1,4 +1,4 @@
-import signupImg from "../Images/herov.jpg";
+import signupImg from "../Images/heros.png";
 import Template from "../components/Template";
 
 function Signup() {

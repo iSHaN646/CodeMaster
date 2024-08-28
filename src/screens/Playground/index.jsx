@@ -12,6 +12,7 @@ import { ModalContext } from "../../context/ModalContext";
 import Modal from "../../components/Modal";
 import { Buffer } from "buffer";
 import axios from "axios";
+import toast from "react-hot-toast";
 const MainContainer = styled.div`
   display: grid;
   grid-template-columns: ${({ isFullScreen }) =>
@@ -34,7 +35,8 @@ const Playground = () => {
   const { folderId, playgroundId } = useParams();
   const { folders, savePlayground } = useContext(PlaygroundContext);
   const { isOpenModal, openModal, closeModal } = useContext(ModalContext);
-  
+  const [isError, setIsError] = useState(false);
+
   const folder = folders.find((folder) => folder._id === folderId);
 
   // Find the subfolder by subolderId within the found folder
@@ -62,86 +64,100 @@ const Playground = () => {
     return Buffer.from(str, "base64").toString();
   };
 
-  const postSubmission = async (language_id, source_code, stdin) => {
-    const options = {
-      method: "POST",
-      url: "https://judge0-ce.p.rapidapi.com/submissions",
-      params: { base64_encoded: "true", fields: "*" },
-      headers: {
-        "content-type": "application/json",
-        "Content-Type": "application/json",
-        "X-RapidAPI-Key": "b4e5c5a05fmsh9adf6ec091523f8p165338jsncc58f31c26e1",
-        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
-      },
-      data: JSON.stringify({
-        language_id: language_id,
-        source_code: source_code,
-        stdin: stdin,
-      }),
-    };
+  const API = axios.create({
+    baseURL: "https://emkc.org/api/v2/piston",
+  });
 
-    const res = await axios.request(options);
-    return res.data.token;
+  const LANGUAGE_VERSIONS = {
+    javascript: "18.15.0",
+    typescript: "5.0.3",
+    python: "3.10.0",
+    java: "15.0.2",
+    cpp: "10.2.0",
   };
 
-  const getOutput = async (token) => {
-    // we will make api call here
-    const options = {
-      method: "GET",
-      url: "https://judge0-ce.p.rapidapi.com/submissions/" + token,
-      params: { base64_encoded: "true", fields: "*" },
-      headers: {
-        "X-RapidAPI-Key": "3ed7a75b44mshc9e28568fe0317bp17b5b2jsn6d89943165d8",
-        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
-      },
-    };
-
-    // call the api
-    const res = await axios.request(options);
-    if (res.data.status_id <= 2) {
-      const res2 = await getOutput(token);
-      return res2.data;
-    }
-    return res.data;
+  const postSubmission = async (curl, source_code, stdin) => {
+    const response = await API.post("/execute", {
+      language: curl,
+      version: LANGUAGE_VERSIONS[curl],
+      files: [
+        {
+          content: source_code,
+        },
+      ],
+      stdin: stdin,
+    });
+    return response.data;
   };
+  // const postSubmission = async (language_id, source_code, stdin) => {
+  //   const options = {
+  //     method: "POST",
+  //     url: "https://judge0-ce.p.rapidapi.com/submissions",
+  //     params: { base64_encoded: "true", fields: "*" },
+  //     headers: {
+  //       "content-type": "application/json",
+  //       "Content-Type": "application/json",
+  //       "X-RapidAPI-Key": "81b75f2b37msh835a4407ec1b9dfp154cebjsnb765e3143f6d",
+  //       "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+  //     },
+  //     data: JSON.stringify({
+  //       language_id: language_id,
+  //       source_code: source_code,
+  //       stdin: stdin,
+  //     }),
+  //   };
+
+  //   const res = await axios.request(options);
+  //   return res.data.token;
+  // };
+
+  // const getOutput = async (token) => {
+  //   // we will make api call here
+  //   const options = {
+  //     method: "GET",
+  //     url: "https://judge0-ce.p.rapidapi.com/submissions/" + token,
+  //     params: { base64_encoded: "true", fields: "*" },
+  //     headers: {
+  //       "X-RapidAPI-Key": "81b75f2b37msh835a4407ec1b9dfp154cebjsnb765e3143f6d",
+  //       "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+  //     },
+  //   };
+
+  // call the api
+  //   const res = await axios.request(options);
+  //   if (res.data.status_id <= 2) {
+  //     const res2 = await getOutput(token);
+  //     return res2.data;
+  //   }
+  //   return res.data;
+  // };
 
   const runCode = async () => {
-    openModal({
-      show: true,
-      modalType: 6,
-      identifiers: {
-        folderId: "",
-        cardId: "",
-      },
-    });
-    const language_id = languageMap[currentLanguage].id;
-    const source_code = encode(currentCode);
-    const stdin = encode(currentInput);
+    try {
+      openModal({
+        show: true,
+        modalType: 6,
+        identifiers: {
+          folderId: "",
+          cardId: "",
+        },
+      });
+      const language_id = languageMap[currentLanguage].id;
+      const source_code = currentCode;
+      const stdin = currentInput;
 
-    // pass these things to Create Submissions
-    const token = await postSubmission(language_id, source_code, stdin);
+      // pass these things to Create Submissions
+      // const token = await postSubmission(language_id, source_code, stdin);
+      const result = await postSubmission(currentLanguage, source_code, stdin);
 
-    // get the output
-    const res = await getOutput(token);
-    const status_name = res.status.description;
-    const decoded_output = decode(res.stdout ? res.stdout : "");
-    const decoded_compile_output = decode(
-      res.compile_output ? res.compile_output : ""
-    );
-    const decoded_error = decode(res.stderr ? res.stderr : "");
-
-    let final_output = "";
-    if (res.status_id !== 3) {
-      // our code have some error
-      if (decoded_compile_output === "") {
-        final_output = decoded_error;
-      } else {
-        final_output = decoded_compile_output;
-      }
-    } else {
-      final_output = decoded_output;
+      const { run } = result;
+      setCurrentOutput(run.output.split("\n"));
+      result.stderr ? setIsError(true) : setIsError(false);
+    } catch (err) {
+      console.log(err);
+      toast.error("Unable to run Code!");
+      closeModal();
     }
-    setCurrentOutput(status_name + "\n\n" + final_output);
     closeModal();
   };
 

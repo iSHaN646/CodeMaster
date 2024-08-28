@@ -25,12 +25,12 @@ const EditPlaygroundTitle = () => {
       <Header>
         <h2>Edit Card Title</h2>
         <CloseButton onClick={() => closeModal()}>
-          <IoCloseSharp />
+          <IoCloseSharp fontSize="22px" className="text-black" />
         </CloseButton>
       </Header>
       <Input>
         <input
-          type="text"
+          type="text"  className="text-black"
           onChange={(e) => setPlaygroundTitle(e.target.value)}
         />
         <button

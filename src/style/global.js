@@ -8,7 +8,11 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Play', sans-serif;
     }
 
+    .CodeMirror, .CodeMirror * {
+        font-family: 'Source Code Pro', monospace !important;
+    }
+
     a{
         text-decoration: none;
     }
-`
+`;

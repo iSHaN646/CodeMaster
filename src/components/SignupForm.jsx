@@ -80,12 +80,12 @@ function SignupForm() {
       {/* Form */}
       <form
         onSubmit={handleOnSubmit}
-        className="flex w-full flex-col gap-y-4  mt-2"
+        className="flex md:w-full w-[320px] flex-col gap-y-4  mt-2 "
       >
-        <div className="flex gap-11">
+        <div className="flex md:flex-row flex-col md:gap-11 gap-6">
           <label>
-            <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-black">
-              First Name <sup className="text-pink">*</sup>
+            <p className="mb-1 text-[1.2rem] leading-[1.375rem] ">
+              First Name <sup className="bg-red">*</sup>
             </p>
             <input
               required
@@ -94,11 +94,11 @@ function SignupForm() {
               value={firstName}
               onChange={handleOnChange}
               placeholder="Enter first name"
-              className="form-style w-[220px] p-2 rounded-md"
+              className="form-style text-black bg-[#eaf3fa]  md:w-[220px] w-[310px] p-2 rounded-md"
             />
           </label>
           <label>
-            <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-black">
+            <p className="mb-1 text-[1.2rem] leading-[1.375rem] ">
               Last Name <sup className="text-pink">*</sup>
             </p>
             <input
@@ -108,12 +108,12 @@ function SignupForm() {
               value={lastName}
               onChange={handleOnChange}
               placeholder="Enter last name"
-              className="form-style w-[220px] p-2 rounded-md"
+              className="form-style text-black bg-[#eaf3fa]  md:w-[220px] w-[310px] p-2 rounded-md"
             />
           </label>
         </div>
         <label className="w-full">
-          <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-black">
+          <p className="mb-1 text-[1.2rem] leading-[1.375rem] ">
             Email Address <sup className="text-pink">*</sup>
           </p>
           <input
@@ -124,12 +124,12 @@ function SignupForm() {
             value={email}
             onChange={handleOnChange}
             placeholder="Enter email address"
-            className="form-style w-[510px] p-2 rounded-md"
+            className="form-style text-black bg-[#eaf3fa]  md:w-[510px] w-[310px] p-2 rounded-md"
           />
         </label>
-        <div className="flex gap-x-4">
+        <div className="flex md:flex-row flex-col md:gap-x-4 gap-6">
           <label className="relative">
-            <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-black">
+            <p className="mb-1 text-[1.2rem] leading-[1.375rem] ">
               Create Password <sup className="text-pink">*</sup>
             </p>
             <input
@@ -139,13 +139,13 @@ function SignupForm() {
               value={password}
               onChange={handleOnChange}
               placeholder="Enter Password"
-              className="form-style w-full !pr-10 p-2 rounded-md"
+              className="form-style text-black bg-[#eaf3fa]  md:w-full w-[310px] !pr-10 p-2 rounded-md"
             />
 
             <p className="text-pink mt-1 ">{passAlert}</p>
           </label>
           <label className="relative">
-            <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-black">
+            <p className="mb-1 text-[1.2rem] leading-[1.375rem] ">
               Confirm Password <sup className="text-pink">*</sup>
             </p>
             <input
@@ -155,13 +155,13 @@ function SignupForm() {
               value={confirmPassword}
               onChange={handleOnChange}
               placeholder="Confirm Password"
-              className="form-style w-full !pr-10 p-2 rounded-md"
+              className="form-style text-black bg-[#eaf3fa]  md:w-full w-[310px] !pr-10 p-2 rounded-md"
             />
           </label>
         </div>
         <button
           type="submit"
-          className="mt-6 rounded-[8px] bg-[#00b5dd] py-[8px] px-[12px] font-medium text-white w-[510px]"
+          className="mt-6 rounded-[8px] bg-[#aec2fe] py-[8px] px-[12px] font-medium text-black md:w-[510px] w-[310px]"
         >
           Create Account
         </button>

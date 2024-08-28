@@ -35,7 +35,7 @@ function LoginForm() {
       className="mt-6 flex w-full flex-col gap-y-4"
     >
       <label className="w-full">
-        <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-black">
+        <p className="mb-1 text-[1.2rem] leading-[1.375rem] ">
           Email Address <sup className="text-pink">*</sup>
         </p>
         <input
@@ -45,11 +45,11 @@ function LoginForm() {
           value={email}
           onChange={handleOnChange}
           placeholder="Enter email address"
-          className="form-style w-full p-2 rounded-md"
+          className="form-style text-black bg-[#eaf3fa] w-full p-2 rounded-md"
         />
       </label>
       <label className="relative">
-        <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-black">
+        <p className="mb-1 text-[1.2rem] leading-[1.375rem] ">
           Password <sup className="text-pink">*</sup>
         </p>
         <input
@@ -59,7 +59,7 @@ function LoginForm() {
           value={password}
           onChange={handleOnChange}
           placeholder="Enter Password"
-          className="form-style w-full !pr-10 p-2 rounded-md"
+          className="form-style text-black bg-[#eaf3fa] w-full !pr-10 p-2 rounded-md"
         />
 
         <Link to="/forgot-password">
@@ -70,7 +70,7 @@ function LoginForm() {
       </label>
       <button
         type="submit"
-        className="mt-6 rounded-[8px] bg-[#00b5dd] py-[8px] px-[12px] font-medium text-white"
+        className="mt-6 rounded-[8px] bg-[#aec2fe] py-[8px] px-[12px] font-medium text-black"
       >
         Sign In
       </button>

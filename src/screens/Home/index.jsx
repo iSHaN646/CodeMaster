@@ -12,6 +12,8 @@ import { useSelector, useDispatch } from "react-redux";
 const StyledHome = styled.div`
   width: 100%;
   min-height: 100vh;
+  background-color: rgb(40,40,40);
+  color: white;
 `;
 
 const Home = () => {

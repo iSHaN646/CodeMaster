@@ -1,5 +1,6 @@
 require("dotenv").config();
-const BASE_URL = `https://code-master-api.vercel.app`;
+// const BASE_URL = `https://code-master-api.vercel.app`;
+const BASE_URL = `http://localhost:4000`;
 
 // AUTH ENDPOINTS
 export const endpoints = {
@@ -24,4 +25,16 @@ export const historyEndpoints = {
   SAVE_SUBFOLDER_API: BASE_URL + "/history/saveSubFolder",
   DELETE_FOLDER_API: BASE_URL + "/history/deleteFolder",
   DELETE_SUBFOLDER_API: BASE_URL + "/history/deleteSubFolder",
+};
+export const problemEndpoints = {
+  PROBLEM_DETAILS_API: BASE_URL + "/problem/getAllProblems",
+  PROBLEM_DETAIL_API: BASE_URL + "/problem/getProblem",
+  CREATE_PROBLEM_API: BASE_URL + "/problem/addProblem",
+  UPDATE_PROBLEM_API: BASE_URL + "/problem/updateProblem",
+  UPDATE_CODE_API: BASE_URL + "/problem/updateCode",
+  GET_CODE_API: BASE_URL + "/problem/getUserCode",
+  SAVE_CODE_API: BASE_URL + "/problem/saveCode",
+  GET_SUBM_API: BASE_URL + "/problem/getSubmissions",
+  DELETE_PROBLEM_API: BASE_URL + "/problem/deleteProblem",
+  SPROBLEM_DETAILS_API: BASE_URL + "/problem/getAllSolvedProblems",
 };

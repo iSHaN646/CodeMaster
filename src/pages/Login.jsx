@@ -1,4 +1,4 @@
-import loginImg from "../Images/herov.jpg";
+import loginImg from "../Images/heros.png";
 import Template from "../components/Template";
 
 function Login() {

@@ -17,7 +17,7 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+    <div className=" bg-dark-layer-1 text-white grid min-h-[calc(100vh-3.5rem)] place-items-center">
       {loading ? (
         <div className="spinner"></div>
       ) : (
@@ -43,13 +43,13 @@ function ForgotPassword() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter email address"
-                  className="form-style w-full p-2 rounded-md"
+                  className="form-style text-black bg-[#eaf3fa] w-full p-2 rounded-md"
                 />
               </label>
             )}
             <button
               type="submit"
-              className="mt-6 w-full rounded-[8px] bg-[#00b5dd] py-[12px] px-[12px] font-medium text-white"
+              className="mt-6 w-full rounded-[8px] bg-[#aec2fe] py-[12px] px-[12px] font-medium text-black"
             >
               {!emailSent ? "Submit" : "Resend Email"}
             </button>

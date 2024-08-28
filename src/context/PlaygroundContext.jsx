@@ -30,10 +30,10 @@ export const languageMap = {
   java: {
     id: 62,
     defaultCode: `public class Main {
-            public static void main(String[] args) {
-                System.out.println("Hello World!");
-            }
-    }`,
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}`,
   },
   python: {
     id: 71,

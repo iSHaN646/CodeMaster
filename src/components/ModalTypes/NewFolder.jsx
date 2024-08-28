@@ -13,11 +13,11 @@ const NewFolder = () => {
       <Header>
         <h2>Create New Folder</h2>
         <CloseButton onClick={() => closeModal()}>
-          <IoCloseSharp />
+          <IoCloseSharp fontSize="22px" className="text-black" />
         </CloseButton>
       </Header>
       <Input>
-        <input type="text" onChange={(e) => setFolderTitle(e.target.value)} />
+        <input type="text"  className="text-black" onChange={(e) => setFolderTitle(e.target.value)} />
         <button
           onClick={() => {
             addFolder(folderTitle);

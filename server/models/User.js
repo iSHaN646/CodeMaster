@@ -50,6 +50,12 @@ const userSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    solvedprob: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Problem",
+      },
+    ],
 
     // Add timestamps for when the document is created and last modified
   },

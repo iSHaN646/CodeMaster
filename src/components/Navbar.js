@@ -12,7 +12,6 @@ const Logo = styled.img`
 `;
 
 const MainHeading = styled.h1`
-
   font-size: 2rem;
   font-weight: 400;
   display: inline-block;
@@ -35,7 +34,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#1e1e1e] text-[--ac-1]">
-      <div className="mx-64 flex items-center justify-between ">
+      <div className="lg:mx-64 md:mx-1 md:w-[400px] flex items-center justify-between ">
         <div className="logo flex gap-x-2 items-center p-2">
           <Link to="/">
             <MainHeading>
@@ -47,18 +46,25 @@ const Navbar = () => {
           <ul className="flex items-center justify-between gap-x-4 font-medium">
             <li>
               {/* Login / Signup / Dashboard */}
-              <div className="hidden items-center gap-x-4 md:flex absolute right-5 top-3">
+              <div className="lg:items-center gap-x-4  flex absolute right-5 lg:top-3 lg:mr-0  md:mr-[98px]">
                 {token === null && (
                   <Link to="/login">
-                    <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-white font-bold">
+                    <button className="rounded-[8px] lg:border lg:border-richblack-700 bg-richblack-800 lg:px-[12px] lg:py-[8px] text-white lg:font-bold md:px-4 relative lg:top-0 top-[-0.5rem]">
                       Log in
                     </button>
                   </Link>
                 )}
                 {token === null && (
                   <Link to="/signup">
-                    <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-white font-bold">
+                    <button className="rounded-[8px] lg:border lg:border-richblack-700 bg-richblack-800 lg:px-[12px] lg:py-[8px] text-white lg:font-bold relative lg:top-0 top-[-0.5rem] ">
                       Sign up
+                    </button>
+                  </Link>
+                )}
+                {token !== null && (
+                  <Link to="/problems">
+                    <button className="rounded-[8px]  bg-richblack-800 lg:px-[12px] lg:py-[8px] text-white lg:font-bold relative lg:top-0 top-[-0.5rem] ">
+                      Problems
                     </button>
                   </Link>
                 )}

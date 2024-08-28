@@ -46,7 +46,7 @@ const Heading = styled.h3`
 const AddButton = styled.div`
   font-size: 1rem;
   border-radius: 30px;
-  color: black;
+  color: white;
   display: flex;
   align-items: center;
   gap: 0.25rem;
