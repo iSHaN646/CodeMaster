@@ -1,6 +1,6 @@
 require("dotenv").config();
-// const BASE_URL = `https://code-master-api.vercel.app`;
-const BASE_URL = `http://localhost:4000`;
+const BASE_URL = `https://code-master-api.vercel.app`;
+// const BASE_URL = `http://localhost:4000`;
 
 // AUTH ENDPOINTS
 export const endpoints = {
