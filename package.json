@@ -91,6 +91,7 @@
     "stream": false,
     "string_decoder": false,
     "events": false,
-    "vm": false
+    "vm": false,
+    "process": false
   }
 }
